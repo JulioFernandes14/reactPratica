@@ -1,0 +1,50 @@
+# Passando Props para um Componente
+
+No React, **props** (propriedades) são uma forma de passar dados e métodos de um componente pai para um componente filho. Eles permitem que os componentes se comuniquem e compartilhem informações de forma eficiente. Aqui estão os principais pontos sobre o uso de props:
+
+1. **O que são Props?**
+   - Props são um objeto que contém valores e métodos passados de um componente pai para um componente filho.
+   - Eles são lidos somente e não podem ser alterados pelo componente filho.
+
+2. **Como Passar Props?**
+   - Props são passadas para um componente filho como atributos XML:
+     ```jsx
+     <ComponenteFilho prop1="valor1" prop2={valor2} />
+     ```
+
+3. **Acessando Props no Componente Filho**
+   - Dentro do componente filho, props são acessadas através do parâmetro `props`:
+     ```jsx
+     function ComponenteFilho(props) {
+       return <div>{props.prop1}</div>;
+     }
+     ```
+
+4. **Desestruturação de Props**
+   - Você pode desestruturar props diretamente nos parâmetros da função do componente:
+     ```jsx
+     function ComponenteFilho({ prop1, prop2 }) {
+       return <div>{prop1}</div>;
+     }
+     ```
+
+5. **Props e Renderização Condicional**
+   - Props podem ser usados para condicionar o que é exibido pelo componente, baseando-se em valores passados:
+     ```jsx
+     function ComponenteFilho({ mostrar }) {
+       return mostrar ? <div>Mostrar</div> : <div>Não Mostrar</div>;
+     }
+     ```
+
+6. **Props e Funcionalidade**
+   - Props também podem incluir funções, permitindo que componentes filhos acionem métodos definidos no componente pai:
+     ```jsx
+     function ComponentePai() {
+       const handleClick = () => alert('Botão clicado!');
+       return <ComponenteFilho onClick={handleClick} />;
+     }
+
+     function ComponenteFilho({ onClick }) {
+       return <button onClick={onClick}>Clique Aqui</button>;
+     }
+     ```
